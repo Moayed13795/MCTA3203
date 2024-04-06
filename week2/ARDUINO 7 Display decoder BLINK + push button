@@ -1,0 +1,59 @@
+int pinA = 3;
+int pinB = 2;
+int pinC = 8;
+int pinD = 10;
+int pinE = 6;
+int pinF = 4;
+int pinG = 5;
+int i = 0;
+int j = 0;
+int Arduino_Pins[7] = {pinA, pinB, pinC, pinD, pinE, pinF, pinG};
+int Segment_Pins[10][7] = {{1, 1, 1, 1, 1, 1, 0},
+                          {0, 1, 1, 0, 0, 0, 0},
+                          {1, 1, 0, 1, 1, 0, 1},
+                          {1, 1, 1, 1, 0, 0, 1},
+                          {0, 1, 1, 0, 0, 1, 1},
+                          {1, 0, 1, 1, 0, 1, 1},
+                          {1, 0, 1, 1, 1, 1, 1},
+                          {1, 1, 1, 0, 0, 0, 0},
+                          {1, 1, 1, 1, 1, 1, 1},
+                          {1, 1, 1, 1, 0, 1, 1},
+                                                 };
+
+
+void setup() {
+
+
+  pinMode(pinA, OUTPUT);
+  pinMode(pinB, OUTPUT);
+  pinMode(pinC, OUTPUT);
+  pinMode(pinD, OUTPUT);
+  pinMode(pinE, OUTPUT);
+  pinMode(pinF, OUTPUT);
+  pinMode(pinG, OUTPUT);
+  pinMode(13, INPUT_PULLUP);
+}
+
+
+void loop() {
+ 
+   for (j = 0; j<7; j++)
+  {
+    digitalWrite(Arduino_Pins[j], Segment_Pins[i][j]);
+  }
+
+
+  if(digitalRead(13)==0)
+  {
+    while(digitalRead(13)==0)
+    {
+     
+    }
+    i++;
+  }
+  if(i == 10)
+  {
+    i = 0;
+  }
+  delay(100);
+}
