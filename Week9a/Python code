@@ -1,0 +1,56 @@
+# --
+# Simple code for RGB color detection
+# --
+import matplotlib.pyplot as plt
+import numpy as np
+def create_channel(color_val):
+return np.ones((10, 10, 3))*color_val
+def display_color(r, g, b):
+color = [r/255, g/255, b/255] # Normalize RGB values
+# Create a block for each channel with linear gradients
+r1 = create_channel([r/255, 0, 0])
+g1 = create_channel([0, g/255, 0])
+b1 = create_channel([0, 0, b/255])
+rgbchannel = [r1, g1, b1]
+# Combine the color channel horizontally
+9
+# channels_combined = np.hstack(rgbchannel)
+# Create the final RGB values for the specified color
+true_color = np.ones((10, 30, 3))*color
+# Combine all vertically
+# final_display = np.vstack([channels_combined, true_color])
+final_display = np.vstack([np.hstack(rgbchannel), true_color])
+# Display the final block
+plt.imshow(final_display)
+plt.axis('off')
+plt.show()
+# -- Example: Display color for random RGB values
+random_r = np.random.randint(0, 256)
+random_g = np.random.randint(0, 256)
+random_b = np.random.randint(0, 256)
+display_color(random_r, random_g, random_b)
+Python Code For Part 2: Color Detection with Color Sensor
+# --
+10
+# Basic code for checking connection to webcam (or USB camera)
+# --
+import cv2
+print("Press ESC to exit.")
+capture = cv2.VideoCapture(0) # adjust as needed
+if capture.isOpened():
+print('Camera is opened')
+while True:
+ret, frame = capture.read()
+if ret:
+cv2.imshow('Vid1', frame)
+t = cv2.waitKey(1) # wait for 1 second
+# Check if the window is closed
+if (cv2.getWindowProperty('Vid1', cv2.WND_PROP_VISIBLE) < 1):
+break
+# Check if ESC or 'x' is pressed
+if (t == 27) or (t & 0XFF == ord('x')):
+break
+11
+capture.release()
+cv2.destroyAllWindows()
+print('Camera is closed')
